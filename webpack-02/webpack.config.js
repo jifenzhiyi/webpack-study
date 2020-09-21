@@ -29,8 +29,12 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['kkb-style-loader', 'kkb-css-loader', 'kkb-less-loader'],
+        use: 'task-less-loader',
       },
+      // {
+      //   test: /\.less$/,
+      //   use: ['kkb-style-loader', 'kkb-css-loader', 'kkb-less-loader'],
+      // },
       // {
       //   test: /\.less$/,
       //   use: [
