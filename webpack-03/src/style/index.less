@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('../font/webfont.eot'); /* IE9 */
+  src: url('../font/webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/webfont.woff2') format('woff2'),
+  url('../font/webfont.woff') format('woff'), /* chrome、firefox */
+  url('../font/webfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 16px;
+  background: #f8f8f8;
+  font-family: 'webfont' !important;
+}
+@base_bg_color: purple;
+#app {
+  width: 500px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: @base_bg_color;
+  h1 {
+    display: flex;
+    img {
+      padding-right: 10px;
+    }
+  }
+  p {
+    color: #f90;
+    font-size: 16px;
+    padding-top: 20px;
+  }
+}
