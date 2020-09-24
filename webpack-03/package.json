@@ -11,19 +11,25 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.0.0",
+    "axios": "^0.20.0",
     "css-loader": "^4.3.0",
+    "express": "^4.17.1",
     "file-loader": "^6.1.0",
+    "glob": "^7.1.6",
     "less": "^3.12.2",
     "less-loader": "^7.0.1",
     "mini-css-extract-plugin": "^0.11.2",
     "postcss": "^8.0.6",
     "postcss-loader": "^4.0.2",
     "style-loader": "^1.2.1",
-    "url-loader": "^4.1.0"
+    "url-loader": "^4.1.0",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack"
+    "dev": "webpack --config ./webpack.mpa.config.js",
+    "serve": "webpack-dev-server",
+    "start": "webpack"
   },
   "author": "",
   "license": "ISC"

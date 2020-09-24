@@ -1,11 +1,38 @@
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const glob = require('glob');
+
+const setMpa = () => {
+  const entry = {};
+  const htmlWebpackPlugins = [];
+  const entryFiles = glob.sync(path.join(__dirname, './src/pages/*/index.js'));
+  entryFiles.map((item) => {
+    const match = item.match(/pages\/(.*)\/index\.js$/);
+    const pageName = match[1];
+    entry[pageName] = item;
+    htmlWebpackPlugins.push(
+      new HtmlWebpackPlugin({
+        template: './public/index.html', // 默认同一种模版
+        // template: pageName === 'home' ? './public/index.html' : './public/other.html', // 套用两种模版
+        // template: path.join(__dirname, `./public/${pageName}.html`), // 每个页面不同模版
+        filename: `${pageName}.html`,
+        chunks: [pageName], // 可以加载多个chunks，根据需求自定义
+      })
+    );
+  });
+  return {
+    entry,
+    htmlWebpackPlugins,
+  };
+};
+
+const { entry, htmlWebpackPlugins } = setMpa();
 
 module.exports = {
   // 入口
-  entry: './src/index.js',
+  entry,
   // 打包模式
   mode: 'development',
   // 出口
@@ -14,16 +41,6 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     // 资源名称
     filename: '[name]_[chunkhash:6].js',
-  },
-  devServer: {
-    open: true,
-    port: 9001,
-    contentBase: './dist',
-    proxy: {
-      '/api': {
-        target: 'http://localhost:9002/',
-      },
-    },
   },
   // loader 模块转换器 模块处理器
   module: {
@@ -68,18 +85,6 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.js$/,
-        use: [
-          'replace-loader',
-          {
-            loader: 'replace-loader-async',
-            options: {
-              name: '名字',
-            },
-          },
-        ],
-      },
     ],
   },
   resolveLoader: {
@@ -87,14 +92,12 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   plugins: [
-    new htmlWebpackPlugin({
-      template: './public/index.html',
-      filename: 'index.html',
-      chunks: ['main'],
-    }),
+    ...htmlWebpackPlugins,
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/index_[contenthash:6].css',
     }),
   ],
 };
+
+// 暗号：等价交换，炼金术不变的原则
