@@ -3,6 +3,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
+const fileWebpackPlugin = require('./myPlugins/file-webpack-plugin');
 
 module.exports = {
   // 入口
@@ -75,15 +76,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-              // plugin: [],
-            },
-          },
-        ],
+        use: 'babel-loader',
       },
     ],
   },
@@ -102,5 +95,6 @@ module.exports = {
     //   filename: 'css/index_[contenthash:6].css',
     // }),
     new webpack.HotModuleReplacementPlugin(),
+    new fileWebpackPlugin({ name: '福尔摩斯' }),
   ],
 };

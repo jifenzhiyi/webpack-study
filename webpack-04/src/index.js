@@ -1,19 +1,35 @@
-// import axios from 'axios';
-// import './style/index.less';
-// import logoSrc from './assets/logo.jpg';
-// import success from './assets/success.png';
+// import React, { Component } from 'react';
+// import ReactDom from 'react-dom';
 
-// axios.get('/api/info').then((res) => {
-//   console.log('res', res);
+// class App extends Component {
+//   render() {
+//     return <div>hello React</div>;
+//   }
+// }
+
+// ReactDom.render(<App />, document.getElementById('app'));
+
+// const arr = [new Promise(() => {}), new Promise(() => {})];
+// arr.map((item) => {
+//   console.log(item);
 // });
 
-// const root = document.getElementById('app');
-// root.innerHTML = `
-// <h1><img width="45" src="${success}" />标题 new</h1>
-// <p>hello 老韩!</p>
-// <p>明月几时有，自己抬头瞅</p>
-// <p><img width="100" src="${logoSrc}" /></p>
-// `;
+import axios from 'axios';
+import './style/index.less';
+import logoSrc from './assets/logo.jpg';
+import success from './assets/success.png';
+
+axios.get('/api/info').then(res => {
+  console.log('res', res);
+});
+
+const root = document.getElementById('app');
+root.innerHTML = `
+<h1><img width="45" src="${success}" />标题 new</h1>
+<p>hello 老韩!</p>
+<p>明月几时有，自己抬头瞅</p>
+<p><img width="100" src="${logoSrc}" /></p>
+`;
 
 // console.log(111111);
 
@@ -47,9 +63,14 @@
 //   });
 // }
 
-// babel
-import '@babel/polyfill';
-const arr = [new Promise(() => {}), new Promise(() => {})];
-arr.map((item) => {
-  console.log(item);
-});
+// const webpack = require('webpack');
+// const config = require('../webpack.config.js');
+
+// const compiler = webpack(config);
+// Object.keys(compiler.hooks).forEach(name => {
+//   compiler.hooks[name].tap('XXX', () => {
+//     console.log('run =>', name);
+//   });
+// });
+
+// compiler.run();

@@ -34,6 +34,14 @@ polyfill 工具库 @babel/polyfill 在目标环境中添加缺失特性
 
 安装
 npm install babel-loader @babel/core @babel/preset-env -D
+npm install @babel/polyfill -S 需要打包到生产依赖
+npm install core-js@3 --save
+
+支持jsx
+npm install react react-dom --save
+npm install --save-dev @babel/preset-react
+
+自定义plugin plugin就是对webpack的功能拓展
 
 ```
 
