@@ -1,4 +1,4 @@
-# webpack-02 搭建
+# webpack-03 搭建
 
 ## 配置国内淘宝源 .npmrc
 

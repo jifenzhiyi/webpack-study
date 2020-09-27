@@ -1,4 +1,4 @@
-# webpack-04 搭建
+# webpack-05 搭建
 
 ## 配置国内淘宝源 .npmrc
 
@@ -42,6 +42,40 @@ npm install react react-dom --save
 npm install --save-dev @babel/preset-react
 
 自定义plugin plugin就是对webpack的功能拓展
+
+总结
+npx webpack
+webpack -> config -> 打包入口 输出目录 -> 入口文件 -> 分析是否有依赖，以及依赖模块的路径
+        -> 解析处理内容 (es6转es5) -> chunk code(缺失函数，require exports)
+
+// simple-webpack
+webpack.config.js
+  entry
+  output
+  mode
+Lib
+  webpack.js
+    Webpack Class
+    Run()
+      入口文件的路径
+      分析文件的内容
+        模块依赖路径
+        内容处理
+        chunkcode
+      递归处理所有依赖（eq: index.js -> a.js -> b.js)
+      生成bundle结构，生成文件放入dist目录
+Bundle.js
+  引入lib/webpack.js
+  引入webpack options
+  compiler = webpack(config)
+  Compiler.run()
+  node bundle.js
+
+安装依赖
+npm install @babel/parser -D
+npm install @babel/traverse -D
+npm install @babel/core -D
+npm install @babel/preset-env -D
 
 ```
 
